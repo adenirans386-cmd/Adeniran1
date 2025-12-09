@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sunday Adeniran - Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+
+        /* Header Section */
+        header.masthead {
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), 
+                        url('forest-stream.jpg') center center no-repeat;
+            background-size: cover;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        header.masthead .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        header.masthead .content {
+            position: relative;
+            z-index: 1;
+            padding: 2rem;
+        }
+
+        header.masthead h1 {
+            font-size: 5rem;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        header.masthead h2 {
+            font-size: 2rem;
+            font-weight: 300;
+            margin-bottom: 3rem;
+        }
+
+        /* Button Styles */
+        .btn {
+            display: inline-block;
+            padding: 1.25rem 3rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            text-decoration: none;
+            border-radius: 0;
+            transition: all 0.3s;
+            border: 3px solid white;
+            color: white;
+            background: transparent;
+        }
+
+        .btn:hover {
+            background: white;
+            color: #2f4f4f;
+        }
+
+        /* Scroll Down Indicator */
+        .scroll-down {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+        }
+
+        .scroll-down a {
+            color: white;
+            font-size: 3rem;
+            text-decoration: none;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 6rem 2rem;
+            background: #1d3030;
+            color: rgba(255, 255, 255, 0.75);
+            text-align: center;
+        }
+
+        .about-section h2 {
+            font-size: 3rem;
+            color: white;
+            margin-bottom: 2rem;
+        }
+
+        .about-section p {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            max-width: 900px;
+            margin: 0 auto 2rem;
+        }
+
+        /* Portfolio Section */
+        .portfolio-section {
+            padding: 6rem 2rem;
+            background: white;
+            text-align: center;
+        }
+
+        .portfolio-section h2 {
+            font-size: 3rem;
+            color: #2f4f4f;
+            margin-bottom: 3rem;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 0;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .portfolio-item {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            height: 400px;
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .portfolio-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .portfolio-caption {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(47, 79, 79, 0.9);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.5s;
+            padding: 2rem;
+        }
+
+        .portfolio-item:hover .portfolio-caption {
+            opacity: 1;
+        }
+
+        .portfolio-caption h3 {
+            color: white;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .portfolio-caption p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.1rem;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 6rem 2rem;
+            background: #1d3030;
+            color: white;
+            text-align: center;
+        }
+
+        .contact-section h2 {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-section p {
+            font-size: 1.3rem;
+            margin-bottom: 3rem;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .contact-item a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+
+        .contact-item a:hover {
+            color: #6c9999;
+        }
+
+        /* Footer */
+        footer {
+            background: #0f1f1f;
+            color: rgba(255, 255, 255, 0.5);
+            padding: 3rem 2rem;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header.masthead h1 {
+                font-size: 3rem;
+            }
+
+            header.masthead h2 {
+                font-size: 1.5rem;
+            }
+
+            .btn {
+                padding: 1rem 2rem;
+                font-size: 1rem;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .portfolio-item {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header/Hero Section - EDIT YOUR NAME HERE -->
+    <header class="masthead">
+        <div class="overlay"></div>
+        <div class="content">
+            <h1>Sunday Adeniran</h1>
+            <h2>GIS Analyst & Spatial Data Specialist</h2>
+            <a href="#about" class="btn">Find Out More</a>
+        </div>
+        <div class="scroll-down">
+            <a href="#about">↓</a>
+        </div>
+    </header>
+
+    <!-- About Section - EDIT YOUR BIO HERE -->
+    <section id="about" class="about-section">
+        <h2>About Me</h2>
+        <p>
+            I'm a passionate GIS analyst specializing in spatial analysis, data visualization, and cartographic design. 
+            With expertise in ArcGIS Pro and a strong foundation in demographic analysis, public health mapping, and 
+            regional planning, I transform complex spatial data into actionable insights that drive informed decision-making.
+        </p>
+        <p>
+            My work focuses on leveraging geographic information systems to solve real-world problems, from analyzing 
+            population density patterns to mapping public health disparities and supporting urban planning initiatives.
+        </p>
+    </section>
+
+
+
+    <!-- Contact Section - EDIT YOUR CONTACT INFO HERE -->
+    <section id="contact" class="contact-section">
+        <h2>Let's Get In Touch</h2>
+        <p>Ready to discuss GIS projects? Send me a message and I'll get back to you as soon as possible!</p>
+        <div class="contact-info">
+            <div class="contact-item">
+                <p>📧 <a href="mailto:Adenirans386@gmail.com">Adenirans386@gmail.com</a></p>
+            </div>
+            <div class="contact-item">
+                <p>📱 <a href="tel:4846440456">484-644-0456</a></p>
+            </div>
+            <div class="contact-item">
+                <p>💻 <a href="https://github.com/adenirans386-cmd" target="_blank">GitHub Profile</a></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Sunday Adeniran. All Rights Reserved.</p>
+        <p style="margin-top: 0.5rem;">GIS Portfolio - Created as part of coursework</p>
+    </footer>
+</body>
+</html>
